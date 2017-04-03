@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:th="http://www.thymeleaf.org"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity3"
+	ng-app="myApp">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Spring Boot Groovy ThymeLeaf</title>
+
+<link
+	href="http://cdn.jsdelivr.net/webjars/bootstrap/3.3.4/css/bootstrap.min.css"
+	th:href="@{/webjars/bootstrap/3.3.4/css/bootstrap.min.css}"
+	rel="stylesheet" meadi="screen" />
+<script src="http://cde.jsdelivr.net/webjars/jquery/2.1.4/jquery.min.js"
+	th:src="@{/webjars/jquery/2.1.4/jquery.min.js}"></script>
+
+<script th:src="@{/webjars/angularjs/1.5.0/angular.min.js}"></script>
+<script th:src="@{/webjars/angularjs/1.5.0/angular-animate.min.js}"></script>
+<script th:src="@{/webjars/angularjs/1.5.0/angular-aria.min.js}"></script>
+<script th:src="@{/webjars/angularjs/1.5.0/angular-cookies.min.js}"></script>
+<script th:src="@{/webjars/angularjs/1.5.0/angular-loader.min.js}"></script>
+<script
+	th:src="@{/webjars/angularjs/1.5.0/angular-message-format.min.js}"></script>
+<script th:src="@{/webjars/angularjs/1.5.0/angular-messages.min.js}"></script>
+
+<script th:src="@{/webjars/angularjs/1.5.0/angular-resource.min.js}"></script>
+<script th:src="@{/webjars/angularjs/1.5.0/angular-route.min.js}"></script>
+<script th:src="@{/webjars/angularjs/1.5.0/angular-sanitize.min.js}"></script>
+<script th:src="@{/webjars/angularjs/1.5.0/angular-touch.min.js}"></script>
+
+
+
+<script th:src="@{/js/lib/angular-parse-ext.min.js}"></script>
+<script th:src="@{/js/lib/sockjs-0.3.4.min.js}"></script>
+<script th:src="@{/js/lib/stomp.min.js}"></script>
+
+<script th:src="@{/js/app.js}"></script>
+
+
+</head>
+
+<body>
+
+	<br />
+	<div class="container-fluid">
+
+
+		<div class="panel panel-primary">
+
+			<div class="panel-heading">Spring Boot Thymeleaf Groovy
+				WebSocket</div>
+
+			<div class="panel-body">
+
+				<div class="jumbotron">
+					<h3>Welcome to the Spring Boot + Thymeleaf + Groovy</h3>
+					<p th:text="'Hi ' + ${name1} + ', have a groovy day !'" />
+				</div>
+
+				<div class="row"
+					ng-controller="MessageListController as messageList">
+
+					<div class="col-md-4">
+
+						<div>
+
+							<p class="text-danger text-center">Send Quote</p>
+
+							<form ng-submit="messageList.sendMessage()" class="form-group">
+
+								<div class="form-group text-warning">
+									<label for="ticker">Ticker</label> <input type="text"
+										class="form-control" ng-model="messageList.ticker" placeholder="Ticker.." 
+										id="ticker"/>
+								</div>
+								<div class="form-group text-warning">
+									<label for="pwd">Name</label> <input type="text" placeholder="Name.."
+										class="form-control" ng-model="messageList.name" id="name"/>
+								</div>
+								<div class="form-group text-warning">
+									<label for="price">Price</label> <input type="text"
+										class="form-control" ng-model="messageList.price" placeholder="price.." 
+										id="price" my-enter="messageList.sendMessage()" />
+								</div>
+								
+
+								<button type="submit" class="btn btn-primary">Send</button>
+							</form>
+							<br />
+
+
+						</div>
+
+					</div>
+
+					<div class="col-md-2"></div>
+
+					<div class="col-md-6">
+						<p class="text-warning text-center">Messages</p>
+
+						<table class="table table-bordered">
+							<thead>
+								<tr class="active">
+									<th>Ticker</th>
+									<th>Price</th>
+									<th>Name</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr class="success" ng-repeat="message in messageList.messages">
+									<td>{{message.ticker}}</td>
+									<td>{{message.price}}</td>
+									<td>{{message.name}}</td>
+								</tr>
+							</tbody>
+						</table>
+
+
+
+					</div>
+
+				</div>
+
+			</div>
+
+			<div class="panel-footer text-center">iQmSoft</div>
+
+		</div>
+
+	</div>
+
+</body>
+</html>
